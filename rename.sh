@@ -14,7 +14,7 @@ while getopts ":hts" opt; do
         echo "[-t]: Rename images with their creation date in the YYYYMMDDD.jpg format"
         echo "[-s string]: Rename images with a string specified by the user in the 000,001,... format"
       ;;
-    t ) for filename in ~/local/HW3_data/exif_data/*.jpg
+    t ) for filename in *.jpg
         do
           mv -n "$filename" "$(identify -verbose $filename | grep exif | grep DateTimeOriginal | awk '{print $2}' | cut -b 1-10 | sed 's/://g' | sed 's/-//g').jpg"
         done
